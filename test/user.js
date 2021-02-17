@@ -17,8 +17,9 @@ var token = '', rand = Math.floor(Math.random() * Math.floor(99999));
     });
 });*/
 describe("API Test:", function(){
+    //Test cases for Auth
     describe("POST /user/auth Get admin user token check", function(){
-       it("Should get allusers", function(done){
+       it("Check admin login and generate Token", function(done){
            app.post("/user/auth")
            .send({ username: "admin@example.com", password: "admin@123" })
            .end((err, res)=>{
@@ -31,6 +32,7 @@ describe("API Test:", function(){
        }); 
        
     });
+    //Test cases for create users
     describe("POST /user/create Adding new user check", function(){
         it("With valid inputs params", function(done){
             app.post("/users/create")
@@ -67,6 +69,7 @@ describe("API Test:", function(){
        }); 
        
     });
+    //Test cases for get all users
     describe("GET /users Get allUsers check", function(){
        it("Should get allusers", function(done){
            app.get("/users/allusers")
@@ -80,9 +83,10 @@ describe("API Test:", function(){
        }); 
        
     });
+    //test cases for remove user
     describe("DELETE /users/removeUser/:userId check", function(){
        it("Should delete users", function(done){
-           app.delete("/users/removeUser/602bcd214005ce0f2488e8a7")
+           app.delete("/users/removeUser/602ba7a1310c7e3a90585f4c")
            .set("Authorization", `Bearer ${token}`)
            .end((err, res)=>{
               expect(res.status).to.eql(200);
@@ -103,4 +107,5 @@ describe("API Test:", function(){
        });
        
     });
+    //other test cases  here
 });
